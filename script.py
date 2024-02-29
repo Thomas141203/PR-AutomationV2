@@ -16,7 +16,7 @@ def ajouter_ligne_numerotee(nom_fichier, i):
         
         git_repo = git.Repo.init()
         
-        github = Github("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")
+        github = Github("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")
         reposi = github.get_repo("Thomas141203/PR-AutomationV2")
         
         nouvelle_branche = f"feature-{numero_derniere_ligne}"
@@ -33,13 +33,14 @@ def ajouter_ligne_numerotee(nom_fichier, i):
 
         pull = reposi.create_pull(
             title=message_commit,
-            body="Pull request pour ajouter une ligne numérotée",
+            body="Pull request",
             head=nouvelle_branche,
             base="main"
         )
+        
         print("Pull request créée avec succès.")
         
-        pull = reposi.get_pull(i)
+        pull = reposi.get_pull(i+3) # le numero de la pr à faire (i+afaire)
 
         pull.merge()
 
@@ -47,5 +48,5 @@ def ajouter_ligne_numerotee(nom_fichier, i):
         print(f"Le fichier '{nom_fichier}' est introuvable.")
 
 nom_fichier = "fichier.txt"
-for i in range(1):
+for i in range(5):
     ajouter_ligne_numerotee(nom_fichier, i)
